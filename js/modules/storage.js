@@ -1,0 +1,12 @@
+/* Armazenamento local seguro */
+// Armazenamento seguro (funciona mesmo se o navegador bloquear localStorage)
+const store = {
+  get(key, fallback) {
+    try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }
+    catch { return fallback; }
+  },
+  set(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* ignora */ }
+  }
+};
+

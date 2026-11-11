@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mente em Equilíbrio — guia de bolso para quem trabalha, estuda e anda sem tempo para si. Projeto de extensão IESB Águas Lindas.">
+  <meta name="theme-color" content="#173029">
+  <title>Mente em Equilíbrio · Guia de bolso</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="app">
+
+    <!-- Cabeçalho -->
+    <header class="hero">
+      <p class="eyebrow">Projeto de extensão · IESB · Águas Lindas</p>
+      <h1>Mente em <span class="highlight">Equilíbrio</span></h1>
+      <p class="lead">Um guia de bolso para quem trabalha, estuda e anda sem tempo para si. Leva dois minutos.</p>
+    </header>
+
+    <!-- Ajuda imediata -->
+    <section class="alert" aria-labelledby="alert-title">
+      <p><strong id="alert-title">Está difícil agora?</strong> Você não precisa passar por isso sozinho(a). Ligue gratuitamente:</p>
+      <div class="phones">
+        <a class="phone" href="tel:188"><span class="phone-num">188</span><span class="phone-desc">CVV · 24 horas</span></a>
+        <a class="phone" href="tel:192"><span class="phone-num">192</span><span class="phone-desc">SAMU · emergência</span></a>
+      </div>
+    </section>
+
+    <!-- Humor do dia -->
+    <section class="mood" aria-labelledby="mood-title">
+      <h2 id="mood-title">Como você está hoje?</h2>
+      <div class="chips" role="radiogroup" aria-labelledby="mood-title">
+        <button class="chip" role="radio" aria-checked="false" data-mood="cansado">Cansado(a)</button>
+        <button class="chip" role="radio" aria-checked="false" data-mood="ansioso">Ansioso(a)</button>
+        <button class="chip" role="radio" aria-checked="false" data-mood="sobrecarregado">Sobrecarregado(a)</button>
+        <button class="chip" role="radio" aria-checked="false" data-mood="bem">Bem</button>
+      </div>
+      <div class="tip" id="mood-tip" aria-live="polite" hidden></div>
+
+      <!-- Exercício de respiração -->
+      <div class="breath" id="breath" hidden>
+        <div class="breath-circle" id="breath-circle"><span id="breath-label">Pronto?</span></div>
+        <p class="breath-count" id="breath-count">Ciclo 0 de 5</p>
+        <button class="btn" id="breath-btn">Começar respiração</button>
+      </div>
+    </section>
+
+    <!-- 1. Precisa conversar -->
+    <section class="card" id="conversar">
+      <div class="card-head">
+        <span class="num">1</span>
+        <h2>Precisa conversar?</h2>
+      </div>
+      <ul class="list">
+        <li><strong>Apoio psicológico do IESB:</strong> procure a secretaria do polo ou a coordenação do seu curso e peça orientação sobre o atendimento disponível para alunos.</li>
+        <li><strong>UBS do seu bairro:</strong> o SUS oferece acolhimento em saúde mental de graça. Leve documento e cartão do SUS.</li>
+        <li><strong>CVV – 188:</strong> conversa sigilosa, gratuita, 24 horas, por telefone ou chat no site <a href="https://cvv.org.br" target="_blank" rel="noopener">cvv.org.br</a>.</li>
+      </ul>
+    </section>
+
+    <!-- 2. Organize sua rotina -->
+    <section class="card" id="rotina">
+      <div class="card-head">
+        <span class="num">2</span>
+        <h2>Organize sua rotina</h2>
+      </div>
+      <p>Pequenos ajustes que cabem num dia corrido:</p>
+      <div class="accordion">
+        <details>
+          <summary>Tempo</summary>
+          <p>Anote as três coisas mais importantes do dia. Se fizer só essas, o dia já valeu. Use o trajeto do ônibus para revisar, não para se cobrar.</p>
+        </details>
+        <details>
+          <summary>Estudo</summary>
+          <p>Estude em blocos curtos com pausas. Use o cronômetro abaixo: 25 minutos de foco, 5 de descanso. Celular longe, só uma aba aberta.</p>
+        </details>
+        <details>
+          <summary>Sono</summary>
+          <p>Tente dormir e acordar perto do mesmo horário. Desligue a tela 30 minutos antes de deitar. Dormir também é estudar: o cérebro guarda o que aprendeu.</p>
+        </details>
+      </div>
+
+      <div class="timer" aria-labelledby="timer-title">
+        <h3 id="timer-title">Cronômetro de foco</h3>
+        <div class="timer-modes">
+          <button class="mode active" data-minutes="25">Foco 25</button>
+          <button class="mode" data-minutes="5">Pausa 5</button>
+          <button class="mode" data-minutes="15">Pausa 15</button>
+        </div>
+        <div class="timer-display" id="timer-display" aria-live="polite">25:00</div>
+        <div class="timer-actions">
+          <button class="btn" id="timer-start">Iniciar</button>
+          <button class="btn btn-ghost" id="timer-reset">Zerar</button>
+        </div>
+      </div>
+
+      <div class="todo">
+        <h3>Minhas 3 prioridades de hoje</h3>
+        <form id="todo-form" class="todo-form">
+          <input type="text" id="todo-input" placeholder="Ex.: entregar a atividade" maxlength="80" aria-label="Nova prioridade">
+          <button class="btn" type="submit">Adicionar</button>
+        </form>
+        <ul class="todo-list" id="todo-list"></ul>
+        <p class="hint" id="todo-hint"></p>
+      </div>
+    </section>
+
+    <!-- 3. Música -->
+    <section class="card" id="musica">
+      <div class="card-head">
+        <span class="num">3</span>
+        <h2>Música para o seu dia</h2>
+      </div>
+      <p>Duas playlists para os momentos que mais pesam: estudar com foco e desacelerar depois.</p>
+      <div class="playlists">
+        <a class="playlist" href="https://open.spotify.com/search/instrumental%20para%20estudar" target="_blank" rel="noopener">
+          <strong>Foco</strong>
+          <span>Instrumental para estudar sem distrair</span>
+        </a>
+        <a class="playlist" href="https://open.spotify.com/search/m%C3%BAsica%20calma%20relaxar" target="_blank" rel="noopener">
+          <strong>Calma</strong>
+          <span>Para o ônibus de volta e antes de dormir</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 4. Mexa-se -->
+    <section class="card" id="mexase">
+      <div class="card-head">
+        <span class="num">4</span>
+        <h2>Mexa-se: 30 minutos por dia</h2>
+      </div>
+      <p>Não precisa de academia cara. Caminhar, descer um ponto antes, alongar no intervalo ou subir escadas já conta. Marque os dias em que conseguiu:</p>
+      <div class="week" id="week" role="group" aria-label="Dias da semana"></div>
+      <p class="week-count"><strong id="week-total">0</strong> de 7 dias nesta semana</p>
+      <div class="progress" aria-hidden="true"><div class="progress-bar" id="week-bar"></div></div>
+      <p class="hint" id="week-msg"></p>
+    </section>
+
+    <!-- Roda de conversa -->
+    <section class="roda">
+      <h2>Roda de conversa no polo</h2>
+      <p>Uma vez por mês, no polo IESB Águas Lindas, em dia de prova ou encontro presencial. Um espaço para falar da rotina sem julgamento. A data é divulgada no grupo de WhatsApp da turma.</p>
+    </section>
+
+    <footer class="footer">
+      <p>Projeto de Empreendedorismo – Turma 2 · Prof.ª Tania Cruz · IESB</p>
+      <p>Este guia não substitui atendimento profissional.</p>
+    </footer>
+  </main>
+
+  <script src="js/modules/storage.js"></script>
+  <script src="js/modules/mood.js"></script>
+  <script src="js/modules/timer.js"></script>
+  <script src="js/modules/todo.js"></script>
+  <script src="js/modules/week.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
